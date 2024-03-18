@@ -1,0 +1,48 @@
+Table users{
+    id integer  [increment, primary key]
+    name varchar [not null]
+    email varchar unique [not null]
+    pressure integer
+    blood_glucose integer
+    weight integer
+    height integer
+    birth_date date [not null]
+    password_hash varchar [not null]
+    salt varchar [not null]
+}
+Table medicine {
+    name varchar [not null]
+    time varchar [not null]
+    period_type varchar [not null]
+    finalDate date [not null]
+    interval varchar [not null]
+    id_user integer [ref: > users.id] [not null]
+    status varchar [not null]
+    dosage integer [not null]
+}
+Table exam {
+    id integer [increment, primary key]
+    exam_URL varchar [not null]
+    name varchar [not null]
+    user_id integer [ref: > users.id] [not null]
+    type varchar [not null]
+    date date [not null]
+}
+Table appointment {
+    id integer [increment, primary key]
+    specialty_id integer [ref: - specialty.id] [not null]
+    date DateTime [not null]
+    resume varchar
+    return_id integer [ref: - return.id] [not null]
+    user_id integer [ref: > users.id] [not null]
+}
+Table return {
+    id integer [increment, primary key]
+    reminder boolean [not null]
+    date date [not null]
+    appointment_id integer [ref: - appointment.id] [not null]
+}
+Table speciality {
+    id integer [increment, primary key]
+    name varchar [not null]
+}
