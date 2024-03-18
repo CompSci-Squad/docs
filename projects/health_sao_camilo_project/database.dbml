@@ -1,5 +1,5 @@
 Table users{
-    id integer  [increment primary key]
+    id integer  [increment, primary key]
     name varchar [not null]
     email varchar unique [not null]
     pressure integer
@@ -21,7 +21,7 @@ Table medicine {
     dosage integer [not null]
 }
 Table exam {
-    id integer auto_increment [primary key]
+    id integer [increment, primary key]
     exam_URL varchar [not null]
     name varchar [not null]
     user_id integer [ref: > users.id] [not null]
@@ -29,21 +29,20 @@ Table exam {
     date date [not null]
 }
 Table appointment {
-    id integer auto_increment [primary key]
+    id integer [increment, primary key]
     specialty_id integer [ref: - specialty.id] [not null]
     date DateTime [not null]
-    resume varchar 
-    will_return boolean NOT NULL
+    resume varchar
     return_id integer [ref: - return.id] [not null]
     user_id integer [ref: > users.id] [not null]
 }
 Table return {
-    id integer auto_increment [primary key]
+    id integer [increment, primary key]
     reminder boolean [not null]
     date date [not null]
     appointment_id integer [ref: - appointment.id] [not null]
 }
 Table speciality {
-    id integer auto_increment [primary key]
+    id integer [increment, primary key]
     name varchar [not null]
 }
